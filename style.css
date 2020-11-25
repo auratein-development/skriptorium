@@ -20,6 +20,7 @@ body{
   font-family: "Lora", serif;
   overflow-x: hidden;
   height: 100%;
+  color: white;
 }
 section{
   height: 100vh;
@@ -151,4 +152,62 @@ button:focus {
 }
 .navbar-nav .nav-link:hover{
   text-decoration: underline;
+}
+
+/* Homepage */
+
+.homepage{
+  height: 100vh;
+}
+.home-text{
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: white;
+  font-family: 'Lora' , serif;
+}
+
+/* Uber Mich */
+
+.about{
+  height: 100vh;
+}
+.uberbox{
+  background-color: #456987;
+  border: 1px solid;
+  padding: 3%;
+}
+.uber-heading{
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+.uber-text{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+/* Scroll Icon */
+
+.scrolling{
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 30px;
+}
+.scroll-img{
+  height: 40px;
+  text-align: center;
+  width: 60px;
+  cursor: pointer;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -ms-transition: 0.5s;
+	-webkit-transform-origin: center;
+	-moz-transform-origin: center;
+	-o-transform-origin: center;
+	-ms-transform-origin: center;
+	transform-origin: center;
+}
+.scroller-up{
+  display: none;
 }
