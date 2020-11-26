@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
   $('.nav-item').click(function(){
-     $('.navbar-collapse').collapse('hide');
      $('#nav-icon4').toggleClass('open');
   });
 
@@ -20,6 +19,18 @@ $(document).ready(function(){
   $(".uber").click(function() {
     $('html, body').animate({
       scrollTop: $("#uber").offset().top
+    }, 1500);
+  });
+
+  $(".textarbeit").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#textarbeit").offset().top
+    }, 1500);
+  });
+
+  $(".foschung").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#foschung").offset().top
     }, 1500);
   });
 
