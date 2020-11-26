@@ -132,13 +132,25 @@ button:focus {
 
 /* Menu List */
 
-#menu{
-  background-color: #717D52;
+.navbar-collapse {
   position: absolute;
+  background-color: #717D52;
   z-index: 9997;
   top: 0;
-  right: 0;
   width: 20%;
+  right: -100px;
+  transition: all 0.2s ease;
+  display: block;
+}
+.navbar-collapse.collapsing {
+  height: auto !important;
+  margin-left: 80%;
+  left: 80%;
+  transition: all 0.2s ease;
+}
+.navbar-collapse.show {
+  right: 0;
+  transition: all 0.2s ease;
 }
 .nav-list{
   height: 100vh;
@@ -171,19 +183,32 @@ button:focus {
 .about{
   height: 100vh;
 }
-.uberbox{
+.textbox{
   background-color: #456987;
   border: 1px solid;
-  padding: 3%;
+  width: 600px;
+  height: 300px;
+  padding: 1%;
 }
-.uber-heading{
+.text-heading{
   font-size: 1.5rem;
   padding-bottom: 1rem;
 }
-.uber-text{
+.text{
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   font-size: 1rem;
+}
+.slogan{
+  font-size: 1.2rem;
+  font-family: 'Open Sans', sans-serif;
+}
+.ellipse{
+  list-style: none;
+  padding-left: 15px;
+  background-image: url("images/ellipse.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
 /* Scroll Icon */
