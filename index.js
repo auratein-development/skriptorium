@@ -23,6 +23,34 @@ $(document).ready(function(){
     }, 1500);
   });
 
+  $(".textarbeit").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#textarbeit").offset().top
+    }, 1500);
+  });
+
+  $(".foschung").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#foschung").offset().top
+    }, 1500);
+  });
+
+  $(".archive").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#archivierung").offset().top
+    }, 1500);
+  });
+  $(".kontakt").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#kontakt").offset().top
+    }, 1500);
+  });
+  $(".impressum").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#impressum").offset().top
+    }, 1500);
+  });
+
   // Scroll-Icon Function
 
   var $scrollSection = $('.section');
@@ -51,8 +79,10 @@ $(document).ready(function(){
     nextSection++;
     });
 
+    // Animation Plugin
+
     AOS.init({
-      duration: 2000,
+      duration: 3000,
     });
 
 });
