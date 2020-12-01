@@ -150,7 +150,7 @@ button:focus {
 }
 .navbar-collapse.show {
   right: 0;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 .nav-list{
   height: 100vh;
@@ -239,4 +239,91 @@ button:focus {
 }
 .scroller-up{
   display: none;
+}
+.mobile-text{
+  display: none;
+}
+
+@media only screen and (min-width: 320px) and (max-width : 600px) {
+
+  body::before{
+    background-image: url('images/mobile-background.png');
+  }
+  /* Nav Bar */
+  .navbar-nav .nav-link{
+    font-size: 1.2rem;
+  }
+  .nav-logo{
+    width: 150px;
+  }
+  #nav-icon4{
+    width: 50px;
+    height: 30px
+  }
+  #nav-icon4 span{
+    left: 5px;
+  }
+  #nav-icon4 span:nth-child(1) {
+    top: 5px;
+  }
+  #nav-icon4 span:nth-child(2) {
+    top: 14px;
+  }
+  #nav-icon4 span:nth-child(3) {
+    top: 22px;
+  }
+  #nav-icon4.open span:nth-child(1){
+    top: 1px;
+  }
+  .navbar-collapse{
+    width: 60%;
+  }
+  .col-12{
+    padding: 0!important;
+  }
+  .home-text{
+    font-size: 1.2rem;
+  }
+  .profile{
+    width: 90px;
+  }
+  .col-4,.col-8, .col-5{
+    padding-right: 0;
+    padding-left: 10px;
+  }
+  .image{
+    padding-left: 15px;
+  }
+  .text{
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+  .textbox{
+    width: 300px;
+    height: 180px;
+  }
+  .text-heading{
+    font-size: 13px;
+    padding-bottom: 0.5rem;
+  }
+  .slogan, .ellipse{
+    font-size: 12px;
+  }
+  .scroll-img{
+    width: 45px;
+    height: 30px;
+  }
+  .kontakt-box{
+    padding: 1rem;
+    padding-top: 2rem;
+  }
+  .left-space{
+    padding: 0;
+  }
+  .desktop{
+    display: none;
+  }
+  .mobile-text{
+    display: block;
+  }
 }
