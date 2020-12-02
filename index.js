@@ -61,7 +61,7 @@ $(document).ready(function(){
     $(".scroller").show();
     $(".scroller-up").hide();
     if (nextSection >= $scrollSection.length) {
-      $('html, body').animate({ scrollTop: 0 }, 1000);
+      $('html, body').animate({ scrollTop: 0 }, 1500);
       nextSection = 1;
       return;
     }
@@ -75,7 +75,7 @@ $(document).ready(function(){
       $(".scroller-up").show();
     }
 
-    $( 'html, body' ).animate({ scrollTop: $($scrollSection[nextSection]).offset().top }, 1000);
+    $( 'html, body' ).animate({ scrollTop: $($scrollSection[nextSection]).offset().top }, 1500);
     nextSection++;
     });
 
