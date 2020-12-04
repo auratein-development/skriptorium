@@ -53,7 +53,7 @@ $(document).ready(function(){
 
   // Scroll-Icon Function
 
-  var $scrollSection = $('.section');
+  var $scrollSection = $('.about');
   var $scrollTrigger = $('.scrolling');
   var nextSection = 1;
 
@@ -82,7 +82,8 @@ $(document).ready(function(){
     // Animation Plugin
 
     AOS.init({
-      duration: 3000,
+      offset: 200,
+      duration: 3000
     });
 
 });

@@ -22,9 +22,6 @@ body{
   height: 100%;
   color: white;
 }
-section{
-  height: 100vh;
-}
 .container-fluid{
   padding: 0!important;
 }
@@ -174,12 +171,20 @@ button:focus {
   font-weight: 500;
   color: white;
   font-family: 'Lora' , serif;
+  text-align: center;
+}
+.text2{
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+  font-family: 'Montserrat' , sans-serif;
+  text-align: center;
 }
 
 /* Uber Mich */
 
 .about{
-  height: 100vh;
+  height: 50vh;
 }
 .textbox{
   background-color: #456987;
@@ -281,6 +286,9 @@ button:focus {
   }
   .home-text{
     font-size: 1.2rem;
+  }
+  .text2{
+    font-size: 1rem;
   }
   .profile{
     width: 90px;
