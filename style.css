@@ -28,6 +28,7 @@ body{
 .row{
   margin: 0!important;
 }
+.aos-init:not(.aos-animate):after{ position:fixed}
 
 /* Nav-Icon */
 
