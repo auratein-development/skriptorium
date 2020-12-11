@@ -46,6 +46,7 @@ body{
   cursor: pointer;
   border: 1px solid white;
   background-color: #717D52;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
 }
 #nav-icon4 span {
   display: block;
@@ -107,6 +108,7 @@ body{
 }
 .open{
   border: none!important;
+  box-shadow: none!important;
 }
 .navbar-toggler{
   background-color: transparent;
@@ -193,23 +195,46 @@ button:focus {
   width: 600px;
   height: 300px;
   padding: 1%;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+  z-index: 999;
 }
-.kontakt-box{
-  padding: 3rem;
-  padding-left: 4rem;
+.atelier{
+  background-color: #C4C4C4;
+  padding: 5%;
+  padding-bottom: 7%;
 }
 .text-heading{
   font-size: 1.5rem;
   padding-bottom: 1rem;
+}
+.text-heading-right{
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  text-align: right;
 }
 .text{
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   font-size: 1rem;
 }
+.text-right{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: right;
+}
 .slogan{
   font-size: 1.2rem;
   font-family: 'Open Sans', sans-serif;
+  background-color: #C4C4C4;
+  padding: 30% 5%;
+  text-align: center;
+}
+.slogan2{
+  font-size: 1.2rem;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #C4C4C4;
+  padding: 35% 5%;
 }
 .ellipse{
   list-style: none;
@@ -218,35 +243,14 @@ button:focus {
   background-repeat: no-repeat;
   background-position: left center;
 }
+.ellipse-right{
+  list-style: none;
+  padding-right: 15px;
+  background-image: url("images/ellipse.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+}
 
-/* Scroll Icon */
-
-.scrolling{
-  width: 100%;
-  text-align: center;
-  position: fixed;
-  bottom: 30px;
-}
-.scroll-img{
-  height: 40px;
-  text-align: center;
-  width: 60px;
-  cursor: pointer;
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-  -ms-transition: 0.5s;
-	-webkit-transform-origin: center;
-	-moz-transform-origin: center;
-	-o-transform-origin: center;
-	-ms-transform-origin: center;
-	transform-origin: center;
-}
-.scroller-up{
-  display: none;
-}
-.mobile-text{
-  display: none;
-}
 
 @media only screen and (min-width: 320px) and (max-width : 600px) {
 
@@ -282,9 +286,6 @@ button:focus {
   .navbar-collapse{
     width: 45%;
   }
-  .col-12{
-    padding: 0!important;
-  }
   .home-text{
     font-size: 1.2rem;
   }
@@ -294,6 +295,9 @@ button:focus {
   .profile{
     width: 90px;
   }
+  .col-12{
+    padding: 0;
+  }
   .col-4,.col-8, .col-5{
     padding-right: 0;
     padding-left: 10px;
@@ -301,31 +305,26 @@ button:focus {
   .image{
     padding-left: 15px;
   }
-  .text{
+  .text, .text-right{
     font-size: 12px;
     margin-bottom: 0;
   }
   .textbox{
     width: 300px;
     height: 180px;
+    padding: 3%;
   }
-  .text-heading{
+  .text-heading, .text-heading-right{
     font-size: 13px;
     padding-bottom: 0.5rem;
   }
-  .slogan, .ellipse{
+  .slogan, .ellipse, .ellipse-right{
     font-size: 12px;
   }
-  .scroll-img{
-    width: 45px;
-    height: 30px;
-  }
-  .kontakt-box{
-    padding: 1rem;
-    padding-top: 2rem;
-  }
-  .left-space{
-    padding: 0;
+  .atelier{
+    padding-bottom: 0;
+    width: max-content;
+    padding: 7%;
   }
   .desktop{
     display: none;
