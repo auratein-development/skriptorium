@@ -57,4 +57,15 @@ $(document).ready(function(){
       duration: 3000
     });
 
+    $('.slider').slick({
+      dots: false,
+      arrows: false,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      speed: 900,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    });
+
 });

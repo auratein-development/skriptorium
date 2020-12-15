@@ -28,7 +28,6 @@ body{
 .row{
   margin: 0!important;
 }
-.aos-init:not(.aos-animate):after{ position:fixed}
 
 /* Nav-Icon */
 
@@ -190,7 +189,7 @@ button:focus {
   height: 50vh;
 }
 .textbox{
-  background-color: #456987;
+  background-color: rgba(38, 87, 128, 0.85);
   border: 1px solid;
   width: 600px;
   height: 300px;
@@ -283,6 +282,14 @@ button:focus {
   #nav-icon4.open span:nth-child(1){
     top: 1px;
   }
+  .about{
+    height: 40vh;
+    padding-top: 100px;
+  }
+  #impressum{
+    height: 60vh;
+    padding-bottom: 60px;
+  }
   .navbar-collapse{
     width: 45%;
   }
@@ -295,12 +302,15 @@ button:focus {
   .profile{
     width: 90px;
   }
+  .slogan{
+    padding: 30% 3%;
+  }
+  .col-4, .col-8, .col-6{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   .col-12{
     padding: 0;
-  }
-  .col-4,.col-8, .col-5{
-    padding-right: 0;
-    padding-left: 10px;
   }
   .image{
     padding-left: 15px;
