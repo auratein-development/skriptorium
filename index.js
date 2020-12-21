@@ -51,38 +51,21 @@ $(document).ready(function(){
     }, 1500);
   });
 
-  // Scroll-Icon Function
-
-  var $scrollSection = $('.section');
-  var $scrollTrigger = $('.scrolling');
-  var nextSection = 1;
-
-  $scrollTrigger.on( 'click', function() {
-    $(".scroller").show();
-    $(".scroller-up").hide();
-    if (nextSection >= $scrollSection.length) {
-      $('html, body').animate({ scrollTop: 0 }, 1000);
-      nextSection = 1;
-      return;
-    }
-
-    while ( $('html, body').scrollTop() > $($scrollSection[nextSection]).offset().top ) {
-      nextSection++;
-    }
-
-    if (nextSection === ($scrollSection.length - 1)) {
-      $(".scroller").hide();
-      $(".scroller-up").show();
-    }
-
-    $( 'html, body' ).animate({ scrollTop: $($scrollSection[nextSection]).offset().top }, 1000);
-    nextSection++;
-    });
-
     // Animation Plugin
 
     AOS.init({
-      duration: 3000,
+      duration: 3000
+    });
+
+    $('.slider').slick({
+      dots: false,
+      arrows: false,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      speed: 900,
+      slidesToShow: 1,
+      slidesToScroll: 1,
     });
 
 });
