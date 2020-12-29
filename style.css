@@ -178,9 +178,9 @@ button:focus {
 }
 .text2{
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 300;
   color: white;
-  font-family: 'Montserrat' , sans-serif;
+  font-family: 'Open Sans' , sans-serif;
   text-align: center;
 }
 
