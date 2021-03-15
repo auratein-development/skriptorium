@@ -189,6 +189,10 @@ button:focus {
 .about{
   height: 50vh;
 }
+.profile{
+  width: 150px;
+  height: 205px;
+}
 .textbox{
   background-color: rgba(38, 87, 128, 0.85);
   border: 1px solid;
