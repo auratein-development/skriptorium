@@ -203,7 +203,6 @@ button:focus {
   z-index: 999;
 }
 .atelier{
-  background-color: #C4C4C4;
   padding: 5%;
   padding-bottom: 7%;
 }
@@ -226,6 +225,13 @@ button:focus {
   font-weight: 300;
   font-size: 1rem;
   text-align: right;
+}
+.text-link{
+  color: white;
+  text-decoration: underline;
+}
+.tet-link:hover{
+  color: white;
 }
 .slogan{
   font-size: 1.2rem;
@@ -253,6 +259,9 @@ button:focus {
   background-image: url("images/ellipse.svg");
   background-repeat: no-repeat;
   background-position: right center;
+}
+.mobile-text{
+  display: none;
 }
 
 
@@ -306,6 +315,7 @@ button:focus {
   }
   .profile{
     width: 90px;
+    height: 125px;
   }
   .slogan{
     padding: 30% 3%;
@@ -346,5 +356,8 @@ button:focus {
   }
   .mobile-text{
     display: block;
+  }
+  .about-text{
+    font-size: 11px;
   }
 }
