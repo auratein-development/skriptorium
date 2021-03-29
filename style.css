@@ -230,22 +230,13 @@ button:focus {
   color: white;
   text-decoration: underline;
 }
-.tet-link:hover{
+.text-link:hover{
   color: white;
+  text-decoration: underline;
 }
-.slogan{
-  font-size: 1.2rem;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #C4C4C4;
-  padding: 30% 5%;
-  text-align: center;
-}
-.slogan2{
-  font-size: 1.2rem;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #C4C4C4;
-  padding: 35% 5%;
-}
+
+/* Other Sections */
+
 .ellipse{
   list-style: none;
   padding-left: 15px;
@@ -260,9 +251,33 @@ button:focus {
   background-repeat: no-repeat;
   background-position: right center;
 }
-.mobile-text{
-  display: none;
+
+/* Reference Page */
+
+.text-heading-ref{
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  font-family: 'Lora' , serif;
+  font-weight: 500;
+  text-align: center;
 }
+.text-ref{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  padding: 0 25px;
+}
+.text-link-ref{
+  color: white;
+  text-decoration: underline;
+}
+.text-link-ref:hover{
+  color: white;
+  text-decoration: underline;
+}
+
 
 
 @media only screen and (min-width: 320px) and (max-width : 600px) {
@@ -317,9 +332,6 @@ button:focus {
     width: 90px;
     height: 125px;
   }
-  .slogan{
-    padding: 30% 3%;
-  }
   .col-4, .col-8, .col-6{
     padding-left: 0px;
     padding-right: 0px;
@@ -330,7 +342,7 @@ button:focus {
   .image{
     padding-left: 15px;
   }
-  .text, .text-right{
+  .text, .text-right, .text-ref{
     font-size: 12px;
     margin-bottom: 0;
   }
@@ -339,11 +351,11 @@ button:focus {
     height: 180px;
     padding: 3%;
   }
-  .text-heading, .text-heading-right{
+  .text-heading, .text-heading-right, .text-ref{
     font-size: 13px;
     padding-bottom: 0.5rem;
   }
-  .slogan, .ellipse, .ellipse-right{
+  .ellipse, .ellipse-right{
     font-size: 12px;
   }
   .atelier{
