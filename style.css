@@ -266,16 +266,31 @@ button:focus {
   font-weight: 300;
   font-size: 1rem;
   padding-bottom: 1rem;
-  text-align: center;
+  text-align: left;
   padding: 0 25px;
 }
 .text-link-ref{
   color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  padding: 0 25px;
   text-decoration: underline;
+  text-align: center;
 }
 .text-link-ref:hover{
   color: white;
   text-decoration: underline;
+}
+.first-row{
+  padding-top: 10%;
+}
+.second-row, .third-row{
+  padding-top: 5%;
+}
+.third-row{
+  padding-bottom: 5%;
 }
 
 
