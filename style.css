@@ -366,9 +366,15 @@ button:focus {
     height: 180px;
     padding: 3%;
   }
-  .text-heading, .text-heading-right, .text-ref{
+  .text-heading, .text-heading-right, .text-link-ref, .text-ref{
     font-size: 13px;
     padding-bottom: 0.5rem;
+  }
+  .text-ref{
+    padding: 0 10px;
+  }
+  .text-heading-ref{
+    font-size: 1.2rem;
   }
   .ellipse, .ellipse-right{
     font-size: 12px;
@@ -386,5 +392,17 @@ button:focus {
   }
   .about-text{
     font-size: 11px;
+  }
+  .oldLogo{
+    width: 130px
+  }
+  .first-row{
+    padding-top: 35%;
+  }
+  .second-row{
+    padding-top: 15%;
+  }
+  .third-row{
+    padding: 15% 0;
   }
 }
