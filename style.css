@@ -254,6 +254,18 @@ button:focus {
 
 /* Reference Page */
 
+.reference{
+  width: 50%;
+  margin: 0 auto;
+  height: auto;
+  padding: 10% 0;
+}
+.color-bg{
+  background-color: rgba(35, 81, 120, 0.85);
+  width: 100%;
+  padding: 5% 0;
+  box-shadow: 0 0 15px rgb(35 81 120);
+}
 .text-heading-ref{
   font-size: 1.5rem;
   padding-bottom: 1rem;
@@ -283,14 +295,8 @@ button:focus {
   color: white;
   text-decoration: underline;
 }
-.first-row{
-  padding-top: 10%;
-}
 .second-row, .third-row{
   padding-top: 5%;
-}
-.third-row{
-  padding-bottom: 5%;
 }
 
 
@@ -368,10 +374,7 @@ button:focus {
   }
   .text-heading, .text-heading-right, .text-link-ref, .text-ref{
     font-size: 13px;
-    padding-bottom: 0.5rem;
-  }
-  .text-ref{
-    padding: 0 10px;
+    padding: 0.5rem;
   }
   .text-heading-ref{
     font-size: 1.2rem;
@@ -396,13 +399,11 @@ button:focus {
   .oldLogo{
     width: 130px
   }
-  .first-row{
-    padding-top: 35%;
-  }
   .second-row{
     padding-top: 15%;
   }
-  .third-row{
-    padding: 15% 0;
+  .reference{
+    padding-top: 30%;
+    width: 90%;
   }
 }
