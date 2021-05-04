@@ -29,6 +29,12 @@ $(document).ready(function(){
     }, 1500);
   });
 
+  $(".reference").click(function() {
+    $('html, body').animate({
+      scrollTop: $("#reference").offset().top
+    }, 1500);
+  });
+
   $(".foschung").click(function() {
     $('html, body').animate({
       scrollTop: $("#foschung").offset().top

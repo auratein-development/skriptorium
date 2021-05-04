@@ -174,12 +174,13 @@ button:focus {
   color: white;
   font-family: 'Lora' , serif;
   text-align: center;
+  padding-bottom: 3%;
 }
 .text2{
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 300;
   color: white;
-  font-family: 'Montserrat' , sans-serif;
+  font-family: 'Open Sans' , sans-serif;
   text-align: center;
 }
 
@@ -187,6 +188,10 @@ button:focus {
 
 .about{
   height: 50vh;
+}
+.profile{
+  width: 150px;
+  height: 205px;
 }
 .textbox{
   background-color: rgba(38, 87, 128, 0.85);
@@ -198,7 +203,6 @@ button:focus {
   z-index: 999;
 }
 .atelier{
-  background-color: #C4C4C4;
   padding: 5%;
   padding-bottom: 7%;
 }
@@ -222,19 +226,17 @@ button:focus {
   font-size: 1rem;
   text-align: right;
 }
-.slogan{
-  font-size: 1.2rem;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #C4C4C4;
-  padding: 30% 5%;
-  text-align: center;
+.text-link{
+  color: white;
+  text-decoration: underline;
 }
-.slogan2{
-  font-size: 1.2rem;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #C4C4C4;
-  padding: 35% 5%;
+.text-link:hover{
+  color: white;
+  text-decoration: underline;
 }
+
+/* Other Sections */
+
 .ellipse{
   list-style: none;
   padding-left: 15px;
@@ -249,6 +251,57 @@ button:focus {
   background-repeat: no-repeat;
   background-position: right center;
 }
+
+/* Reference Page */
+
+.reference{
+  width: 50%;
+  margin: 0 auto;
+  height: auto;
+  padding: 10% 0;
+}
+.color-bg{
+  background-color: rgba(35, 81, 120, 0.85);
+  width: 100%;
+  padding: 5% 0;
+  box-shadow: 0 0 15px rgb(35 81 120);
+}
+.text-heading-ref{
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  font-family: 'Lora' , serif;
+  font-weight: 500;
+  text-align: center;
+}
+.text-ref{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  text-align: left;
+  padding: 0 25px;
+}
+.subtitle{
+  font-weight: 500;
+}
+.text-link-ref{
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  padding: 0 25px;
+  text-decoration: underline;
+  text-align: center;
+}
+.text-link-ref:hover{
+  color: white;
+  text-decoration: underline;
+}
+.second-row, .third-row{
+  padding-top: 5%;
+}
+
 
 
 @media only screen and (min-width: 320px) and (max-width : 600px) {
@@ -301,9 +354,7 @@ button:focus {
   }
   .profile{
     width: 90px;
-  }
-  .slogan{
-    padding: 30% 3%;
+    height: 125px;
   }
   .col-4, .col-8, .col-6{
     padding-left: 0px;
@@ -315,7 +366,7 @@ button:focus {
   .image{
     padding-left: 15px;
   }
-  .text, .text-right{
+  .text, .text-right, .text-ref{
     font-size: 12px;
     margin-bottom: 0;
   }
@@ -324,11 +375,14 @@ button:focus {
     height: 180px;
     padding: 3%;
   }
-  .text-heading, .text-heading-right{
+  .text-heading, .text-heading-right, .text-link-ref, .text-ref{
     font-size: 13px;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem;
   }
-  .slogan, .ellipse, .ellipse-right{
+  .text-heading-ref{
+    font-size: 1.2rem;
+  }
+  .ellipse, .ellipse-right{
     font-size: 12px;
   }
   .atelier{
@@ -341,5 +395,18 @@ button:focus {
   }
   .mobile-text{
     display: block;
+  }
+  .about-text{
+    font-size: 11px;
+  }
+  .oldLogo{
+    width: 130px
+  }
+  .second-row{
+    padding-top: 15%;
+  }
+  .reference{
+    padding-top: 30%;
+    width: 90%;
   }
 }
