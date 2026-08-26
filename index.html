@@ -1,268 +1,428 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="de-CH">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-    <title>Skriptorium</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Montserrat&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <!-- JQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- BootStrap CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- Animation Plugin -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <!-- Slick Slider -->
-    <link rel="stylesheet" type="text/css" href="slick/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="slick/slick/slick-theme.css" />
-    <script type="text/javascript" src="slick/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js" charset="utf-8"></script>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body>
-    <header>
-      <nav class="navbar navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#"><img src="images/logo.png" alt='logo' class="nav-logo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
-          <div id="nav-icon4">
-            <span></span>
-            <span></span>
-            <span></span>
+  <title>Skriptorium GmbH — Textarbeit, Geschichtsvermittlung und Archivierung in Stans</title>
+  <meta name="description" content="Skriptorium GmbH in Stans: journalistische und wissenschaftliche Texte, Redaktion und Lektorat, Geschichtsvermittlung, Archivberatung und Erschliessung. Karin Schleifer, Historikerin, Autorin und wissenschaftliche Archivarin.">
+  <link rel="canonical" href="https://www.skriptorium.ch/">
+
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <meta name="theme-color" content="#16436A">
+
+  <!-- Social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_CH">
+  <meta property="og:site_name" content="Skriptorium GmbH">
+  <meta property="og:title" content="Skriptorium GmbH — Textarbeit, Geschichtsvermittlung und Archivierung">
+  <meta property="og:description" content="Verständliche, punktgenaue Texte. Attraktive Geschichtsvermittlung. Ordnung statt Chaos im Archiv. Karin Schleifer, Historikerin und wissenschaftliche Archivarin in Stans.">
+  <meta property="og:url" content="https://www.skriptorium.ch/">
+  <meta property="og:image" content="https://www.skriptorium.ch/images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Skriptorium — Text, Geschichte, Kultur, Archiv">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Direkt zum Inhalt</a>
+
+  <header class="site-header">
+    <div class="shell site-header__inner">
+      <a class="brand" href="#top" aria-label="Skriptorium GmbH — Startseite">
+        <img src="images/logo.png" alt="Skriptorium GmbH" width="290" height="78">
+      </a>
+
+      <nav class="nav" aria-label="Hauptnavigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#ueber">Über mich</a></li>
+          <li><a class="nav__link" href="#textarbeit">Textarbeit</a></li>
+          <li><a class="nav__link" href="#vermittlung">Vermittlung</a></li>
+          <li><a class="nav__link" href="#archivierung">Archivierung</a></li>
+          <li><a class="nav__link" href="reference.html">Referenzen</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn--primary header-cta" href="#kontakt">Kontakt</a>
+
+      <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" aria-controls="drawer">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="backdrop"></div>
+
+  <nav class="drawer" id="drawer" aria-label="Mobile Navigation">
+    <button class="drawer__close" type="button" aria-label="Menü schliessen">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <a class="drawer__link" href="#ueber">Über mich</a>
+    <a class="drawer__link" href="#textarbeit">Textarbeit</a>
+    <a class="drawer__link" href="#vermittlung">Vermittlung</a>
+    <a class="drawer__link" href="#archivierung">Archivierung</a>
+    <a class="drawer__link" href="reference.html">Referenzen</a>
+    <a class="drawer__link" href="#kontakt">Kontakt</a>
+    <a class="btn btn--primary" href="mailto:ks@skriptorium.ch">Projekt anfragen</a>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================================================ hero -->
+    <section class="hero" id="top">
+      <picture>
+        <source media="(max-width: 39.99rem)" type="image/webp"
+                srcset="images/build/hero-mobile-375.webp 375w, images/build/hero-mobile-750.webp 750w">
+        <source media="(max-width: 39.99rem)"
+                srcset="images/build/hero-mobile-375.jpg 375w, images/build/hero-mobile-750.jpg 750w">
+        <source type="image/webp"
+                srcset="images/build/hero-1000.webp 1000w, images/build/hero-1600.webp 1600w">
+        <img class="hero__art" src="images/build/hero-1600.jpg"
+             srcset="images/build/hero-1000.jpg 1000w, images/build/hero-1600.jpg 1600w"
+             alt="" aria-hidden="true" fetchpriority="high" width="1440" height="1024">
+      </picture>
+
+      <div class="shell hero__inner">
+        <span class="label label--on-navy">Skriptorium GmbH &middot; Stans</span>
+        <h1>Frische Ideen für Ihre Geschichte</h1>
+        <p class="hero__sub">
+          Textarbeit, Geschichtsvermittlung und Archivierung aus einer Hand.
+          Karin Schleifer — Historikerin, Autorin und wissenschaftliche Archivarin.
+        </p>
+
+        <ul class="claims">
+          <li class="claims__item">
+            <p>Verständliche, punktgenaue Texte für Ihr Zielpublikum</p>
+          </li>
+          <li class="claims__item">
+            <p>Attraktive und spannende Geschichtsvermittlung</p>
+          </li>
+          <li class="claims__item">
+            <p>Ordnung statt Chaos im Archiv</p>
+          </li>
+        </ul>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#kontakt">Projekt anfragen</a>
+          <a class="btn btn--ghost-light" href="#textarbeit">Leistungen ansehen</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= über mich -->
+    <section class="section section--paper" id="ueber">
+      <div class="shell">
+        <div class="about reveal">
+          <figure class="about__figure">
+            <picture>
+              <source type="image/webp" srcset="images/build/portrait-148.webp">
+              <img src="images/build/portrait-148.jpg" alt="Karin Schleifer" width="148" height="206">
+            </picture>
+          </figure>
+
+          <div>
+            <span class="label">Über mich</span>
+            <h2 class="about__name">Karin Schleifer</h2>
+            <p class="about__role">Inhaberin und Geschäftsführerin</p>
+
+            <ul class="about__creds">
+              <li>lic. phil. Geschichte &amp; Politikwissenschaft</li>
+              <li>Historikerin</li>
+              <li>Autorin</li>
+              <li>Wissenschaftliche Archivarin</li>
+            </ul>
+
+            <div class="about__body">
+              <p>
+                Seit 2016 führe ich die Skriptorium GmbH in Stans. Als Historikerin, Autorin und
+                wissenschaftliche Archivarin verbinde ich den präzisen Umgang mit Sprache mit
+                fundierter Recherche — für Texte, die verstanden werden, für Geschichte, die
+                Menschen erreicht, und für Archive, in denen sich wieder etwas finden lässt.
+              </p>
+              <p>
+                Das Handwerk der Aktenführung und Archivierung habe ich ab 1999 im Staatsarchiv
+                Nidwalden von der Pike auf gelernt. Seit 2006 arbeite ich im Vorstand des
+                Historischen Vereins Nidwalden mit, und während zwanzig Jahren engagierte ich mich
+                in der Nidwaldner Kulturförderung.
+              </p>
+            </div>
           </div>
-        </button>
-        <div class="collapse navbar-collapse" id="menu">
-          <ul class="navbar-nav nav-list d-flex align-items-center justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link home" href="javascript:void(0)">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link uber" href="javascript:void(0)">Über mich</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link textarbeit" href="javascript:void(0)">Textarbeit</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link foschung" href="javascript:void(0)">Vermittlung</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link archive" href="javascript:void(0)">Archivierung</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="reference.html">Referenzen</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link kontakt" href="javascript:void(0)">Kontakt</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link impressum" href="javascript:void(0)">Impressum</a>
-            </li>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== leistungen -->
+    <section class="section section--card">
+      <div class="shell">
+        <div class="section__head">
+          <span class="label">Leistungen</span>
+          <h2>Drei Arbeitsfelder, ein Anspruch</h2>
+          <p class="lede">
+            Ob ein einzelner Text, ein Kulturprojekt oder ein ganzes Archiv: Sie erhalten die
+            Arbeit von jemandem, der sowohl schreibt als auch erschliesst.
+          </p>
+        </div>
+
+        <div class="services">
+
+          <article class="service reveal" id="textarbeit">
+            <figure class="service__media">
+              <picture>
+                <source type="image/webp"
+                        srcset="images/build/textarbeit-640.webp 640w, images/build/textarbeit-1280.webp 1280w"
+                        sizes="(min-width: 56rem) 30vw, 100vw">
+                <img src="images/build/textarbeit-640.jpg"
+                     srcset="images/build/textarbeit-640.jpg 640w, images/build/textarbeit-1280.jpg 1280w"
+                     sizes="(min-width: 56rem) 30vw, 100vw"
+                     alt="Publikationen von Skriptorium, darunter das Nidwaldner Kulturhandbuch, «Waffenbrüder» und die Zeitschrift traverse"
+                     width="640" height="427" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="service__body">
+              <h3>Textarbeit</h3>
+              <ul class="service__list">
+                <li>Journalistische Texte</li>
+                <li>Broschüren und Webseiten</li>
+                <li>Wissenschaftliche Texte (Geschichte)</li>
+                <li>Politische Kommunikation</li>
+                <li>Redaktion und Lektorat</li>
+              </ul>
+              <a class="service__more" href="reference.html#textarbeit">
+                Mehr zur Textarbeit <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="service reveal" id="vermittlung">
+            <figure class="service__media">
+              <picture>
+                <source type="image/webp"
+                        srcset="images/build/vermittlung-640.webp 640w, images/build/vermittlung-1280.webp 1280w"
+                        sizes="(min-width: 56rem) 30vw, 100vw">
+                <img src="images/build/vermittlung-640.jpg"
+                     srcset="images/build/vermittlung-640.jpg 640w, images/build/vermittlung-1280.jpg 1280w"
+                     sizes="(min-width: 56rem) 30vw, 100vw"
+                     alt="Karin Schleifer spricht an einer Veranstaltung am Mikrofon"
+                     width="640" height="427" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="service__body">
+              <h3>Vermittlung</h3>
+              <ul class="service__list">
+                <li>Historische Forschung</li>
+                <li>Archivrecherchen</li>
+                <li>Transkriptionen</li>
+                <li>Geschichtsvermittlung</li>
+                <li>Kulturprojekte</li>
+              </ul>
+              <a class="service__more" href="reference.html#vermittlung">
+                Mehr zur Vermittlung <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="service reveal" id="archivierung">
+            <figure class="service__media">
+              <picture>
+                <source type="image/webp"
+                        srcset="images/build/archivierung-640.webp 640w, images/build/archivierung-1280.webp 1280w"
+                        sizes="(min-width: 56rem) 30vw, 100vw">
+                <img src="images/build/archivierung-640.jpg"
+                     srcset="images/build/archivierung-640.jpg 640w, images/build/archivierung-1280.jpg 1280w"
+                     sizes="(min-width: 56rem) 30vw, 100vw"
+                     alt="Beschriftete Archivschachteln mit handschriftlichen Signaturen im Regal"
+                     width="640" height="427" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="service__body">
+              <h3>Archivierung</h3>
+              <ul class="service__list">
+                <li>Beratung</li>
+                <li>Gutachten</li>
+                <li>Erschliessung</li>
+                <li>Projektbegleitung</li>
+                <li>Qualitätskontrolle</li>
+              </ul>
+              <a class="service__more" href="reference.html#archivierung">
+                Mehr zur Archivierung <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================== referenzen -->
+    <section class="section section--navy" id="referenzen">
+      <div class="shell">
+        <div class="ref-teaser reveal">
+          <div class="ref-teaser__mark">
+            <img src="images/oldLogo.png" alt="" width="232" height="144" loading="lazy">
+          </div>
+          <div>
+            <span class="label label--on-navy">Referenzen</span>
+            <h2>Meine Arbeit im Detail</h2>
+            <p class="lede">
+              Seit 2016 durfte ich zahlreiche Projekte erfolgreich umsetzen — für Vereine,
+              Kirchgemeinden, Firmen, Museen und Familiennachlässe. Auf der Referenzseite
+              finden Sie ausführliche Beschreibungen der drei Arbeitsfelder sowie die
+              vollständigen Publikations- und Projektlisten.
+            </p>
+            <div class="ref-teaser__actions">
+              <a class="btn btn--primary" href="reference.html">Referenzen ansehen</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= kontakt -->
+    <section class="section section--paper" id="kontakt">
+      <div class="shell">
+        <div class="section__head">
+          <span class="label">Kontakt</span>
+          <h2>Sprechen wir über Ihr Projekt</h2>
+          <p class="lede">
+            Erzählen Sie mir kurz, worum es geht — ich melde mich zurück und wir klären
+            gemeinsam, was sinnvoll und machbar ist.
+          </p>
+        </div>
+
+        <div class="contact">
+          <div class="contact__card reveal">
+            <h3>Büro</h3>
+            <ul class="contact__lines">
+              <li class="strong">Skriptorium GmbH</li>
+              <li>Karin Schleifer</li>
+              <li>Acherweg 19</li>
+              <li>6370 Stans</li>
+              <li><a href="mailto:ks@skriptorium.ch">ks@skriptorium.ch</a></li>
+              <li><a href="tel:+41786303484">078 630 34 84</a></li>
+            </ul>
+            <div class="contact__actions">
+              <a class="btn btn--primary" href="mailto:ks@skriptorium.ch">E-Mail schreiben</a>
+              <a class="btn btn--ghost" href="tel:+41786303484">Anrufen</a>
+            </div>
+          </div>
+
+          <div class="contact__card reveal">
+            <h3>Atelier</h3>
+            <ul class="contact__lines">
+              <li class="strong">Rosenburg (Höfli)</li>
+              <li>Alter Postplatz 3</li>
+              <li>6370 Stans</li>
+              <li>2. Stock</li>
+              <li>Eingang Lit.z</li>
+            </ul>
+            <div class="contact__actions">
+              <a class="btn btn--ghost"
+                 href="https://www.openstreetmap.org/search?query=Alter%20Postplatz%203%2C%206370%20Stans"
+                 target="_blank" rel="noopener">
+                Auf der Karte ansehen
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================== footer -->
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="site-footer__grid">
+        <div>
+          <img src="images/logo.png" alt="Skriptorium GmbH" width="290" height="78" loading="lazy">
+          <p class="site-footer__tagline">
+            Textarbeit, Geschichtsvermittlung und Archivierung. Karin Schleifer, Stans.
+          </p>
+        </div>
+
+        <div>
+          <h2>Leistungen</h2>
+          <ul class="site-footer__links">
+            <li><a href="#textarbeit">Textarbeit</a></li>
+            <li><a href="#vermittlung">Vermittlung</a></li>
+            <li><a href="#archivierung">Archivierung</a></li>
+            <li><a href="reference.html">Referenzen</a></li>
           </ul>
         </div>
-      </nav>
-    </header>
 
-    <main>
-
-      <section id="homepage" class="section">
-        <div class="homepage row d-flex align-items-center justify-content-center">
-          <div class="col-12 col-sm-12 align-items-center justify-content-center">
-            <h1 class="home-text">Frische Ideen für Ihre Geschichte</h1>
-            <div class="slider">
-              <h3 class="text2">Verständliche, punktgenaue Texte für Ihr Zielpublikum</h3>
-              <h3 class="text2">Attraktive und spannende Geschichtsvermittlung</h3>
-              <h3 class="text2">Ordnung statt Chaos im Archiv</h3>
-            </div>
-          </div>
+        <div>
+          <h2>Kontakt</h2>
+          <ul class="site-footer__links">
+            <li>Acherweg 19, 6370 Stans</li>
+            <li><a href="mailto:ks@skriptorium.ch">ks@skriptorium.ch</a></li>
+            <li><a href="tel:+41786303484">078 630 34 84</a></li>
+          </ul>
         </div>
-      </section>
+      </div>
 
-      <section class="section">
-        <div class="row about d-flex align-items-center justify-content-center" id="uber">
-          <div class="col-12 d-flex align-items-center justify-content-center" style="overflow-x: hidden; padding-bottom: 5px">
-            <div class="textbox row d-flex align-items-center justify-content-center" data-aos='fade-left'>
-              <div class="col-4">
-                <img src="images/profile.png" alt="" class="profile">
-              </div>
-              <div class="col-8 image">
-                <h1 class="text-heading-right">Karin Schleifer</h1>
-                <h2 class="text-right">Inhaberin, Geschäftsführerin</h2>
-                <h2 class="text-right">lic. phil. (Geschichte & Politikwissenschaft)</h2>
-                <h2 class="text-right">Historikerin / Autorin</h2>
-                <h2 class="text-right">Wissenschaftliche Archivarin</h2>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="site-footer__base">
+        <p>&copy; 2026 Skriptorium GmbH</p>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="impressum.html#datenschutz">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
-        <!-- <div class="row about d-flex align-items-center justify-content-center" id="uber">
-          <div class="col-12 d-flex align-items-center justify-content-center">
-            <div class="textbox row d-flex align-items-center justify-content-center" data-aos='fade-right'>
-              <div class="col-8 image">
-                <h1 class="text-heading">Sarah Baumgartner</h1>
-                <h2 class="text">Wissenschaftliche Mitarbeiterin</h2>
-                <h2 class="text">MA (Geschichte & Geographie)</h2>
-                <h2 class="text">MAS ALIS (Archivwissenschaft)</h2>
-                <h2 class="text">Historikerin, Wissenschaftliche Archivarin</h2>
-              </div>
-              <div class="col-4">
-                <img src="images/empty.png" alt="" class="profile">
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <div class="row about d-flex align-items-center justify-content-center" id="textarbeit">
-          <div class="col-12 d-flex align-items-center justify-content-center" style="overflow-x: hidden; padding-bottom: 5px">
-            <div class="textbox row d-flex align-items-center justify-content-center" data-aos='fade-left'>
-              <div class="col-8">
-                <h1 class="text-heading">TEXTARBEIT</h1>
-                <h2 class="text">
-                  <li class="ellipse">Journalistische Texte</li>
-                </h2>
-                <h2 class="text">
-                  <li class="ellipse">Broschüren + Webseiten</li>
-                </h2>
-                <h2 class="text">
-                  <li class="ellipse">Wissenschaftliche Texte (Geschichte)</li>
-                </h2>
-                <h2 class="text">
-                  <li class="ellipse">Politische Kommunikation</li>
-                </h2>
-                <h2 class="text">
-                  <li class="ellipse">Redaktion + Lektorat</li>
-                </h2>
-              </div>
-              <div class="col-4">
-                <img src="images/textarbeit-2.png" alt="" class="profile">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row about d-flex align-items-center justify-content-center" id="foschung">
-          <div class="col-12 d-flex align-items-center justify-content-center">
-            <div class="textbox row d-flex align-items-center justify-content-center" data-aos='fade-right'>
-              <div class="col-4">
-                <img src="images/vermittlung-2.png" alt="" class="profile">
-              </div>
-              <div class="col-8">
-                <h1 class="text-heading-right">VERMITTLUNG</h1>
-                <h2 class="text-right">
-                  <li class="ellipse-right">Historische Forschung</li>
-                </h2>
-                <h2 class="text-right">
-                  <li class="ellipse-right">Archivrecherchen</li>
-                </h2>
-                <h2 class="text-right">
-                  <li class="ellipse-right">Transkriptionen</li>
-                </h2>
-                <h2 class="text-right">
-                  <li class="ellipse-right">Geschichtsvermittlung</li>
-                </h2>
-                <h2 class="text-right">
-                  <li class="ellipse-right">Kulturprojekte</li>
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="about row d-flex align-items-center justify-content-center" id="archivierung">
-          <div class="col-12 d-flex align-items-center justify-content-center" style="overflow-x: hidden; padding-bottom: 5px">
-            <div class="textbox row d-flex align-items-center justify-content-center" data-aos='fade-left'>
-              <div class="col-8 col-sm-8">
-                <h1 class="text-heading">ARCHIVIERUNG</h1>
-                <h2 class="text">
-                  <li class="ellipse">Beratung</li>
-                </h2>
-                <h2 class="text">
-                  <li class="ellipse">Gutachten</li>
-                </h2>
-                <h2 class="text">
-                  <li class="ellipse">Erschliessung</li>
-                </h2>
-                <h2 class="text">
-                  <li class="ellipse">Projektbegleitung</li>
-                </h2>
-                <h2 class="text">
-                  <li class="ellipse">Qualitätskontrolle</li>
-                </h2>
-              </div>
-              <div class="col-4">
-                <img src="images/archive.png" alt="" class="profile">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row about d-flex align-items-center justify-content-center" id="reference">
-          <div class="col-12 d-flex align-items-center justify-content-center">
-            <div class="textbox row d-flex align-items-center justify-content-center" data-aos='fade-right'>
-              <div class="col-4">
-                <img src="images/oldLogo.png" alt="" class="oldLogo">
-              </div>
-              <div class="col-8">
-                <h1 class="text-heading-right"><a href="reference.html" class="text-link">Meine Arbeit im Detail</a></h1>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="about row d-flex align-items-center justify-content-center" id="kontakt">
-          <div class="col-12 d-flex align-items-center justify-content-center" style="overflow-x: hidden; padding-bottom: 5px">
-            <div class="textbox kontakt-box row d-flex align-items-center justify-content-center" data-aos='fade-left'>
-              <div class="col-6 col-sm-6 col-md-4">
-                <h1 class="text-heading">KONTAKT</h1>
-                <h2 class="text">Skriptorium GmbH</h2>
-                <h2 class="text">Karin Schleifer</h2>
-                <h2 class="text">Acherweg 19</h2>
-                <h2 class="text">6370 Stans</h2>
-                <h2 class="text">ks@skriptorium.ch</h2>
-                <h2 class="text">078 630 34 84</h2>
-              </div>
-              <div class="col-6 col-sm-6 col-md-8">
-                <h1 class="text-heading-right">ATELIER</h1>
-                <h2 class="text-right">Rosenburg (Höfli)</h2>
-                <h2 class="text-right">Alter Postplatz 3</h2>
-                <h2 class="text-right">6370 Stans</h2>
-                <h2 class="text-right">2. Stock</h2>
-                <h2 class="text-right">(Eingang Lit.z)</h2>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="about row d-flex align-items-center justify-content-center" id="impressum">
-          <div class="col-12 d-flex align-items-center justify-content-center">
-            <div class="textbox row d-flex align-items-center justify-content-center" data-aos='fade-right'>
-              <div class="col-12">
-                <h1 class="text-heading-right">IMPRESSUM</h1>
-                <h2 class="text-right">
-                  <script type="text/javascript">
-                    const event = new Date().toLocaleString('DE-CH', {
-                      month: 'long',
-                      year: 'numeric'
-                    });
-                    document.write(event);
-                  </script>
-                </h2>
-                <h2 class="text-right">Karin Schleifer</h2>
-                <br />
-                <h2 class="text-right">Website: Code Blossom</h2>
-                <!-- <h2 class="text-right">076 436 93 83</h2> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </body>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://www.skriptorium.ch/#organisation",
+    "name": "Skriptorium GmbH",
+    "description": "Textarbeit, Geschichtsvermittlung und Archivierung: journalistische und wissenschaftliche Texte, Redaktion und Lektorat, historische Forschung, Archivberatung und Erschliessung.",
+    "url": "https://www.skriptorium.ch/",
+    "image": "https://www.skriptorium.ch/images/og.jpg",
+    "email": "ks@skriptorium.ch",
+    "telephone": "+41786303484",
+    "foundingDate": "2016",
+    "knowsLanguage": "de-CH",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Acherweg 19",
+      "postalCode": "6370",
+      "addressLocality": "Stans",
+      "addressRegion": "NW",
+      "addressCountry": "CH"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Karin Schleifer",
+      "jobTitle": "Historikerin, Autorin und wissenschaftliche Archivarin",
+      "hasCredential": "lic. phil. Geschichte und Politikwissenschaft"
+    },
+    "areaServed": { "@type": "Country", "name": "Schweiz" },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Leistungen",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Textarbeit",
+          "description": "Journalistische Texte, Broschüren und Webseiten, wissenschaftliche Texte, politische Kommunikation, Redaktion und Lektorat." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Vermittlung",
+          "description": "Historische Forschung, Archivrecherchen, Transkriptionen, Geschichtsvermittlung, Kulturprojekte." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Archivierung",
+          "description": "Beratung, Gutachten, Erschliessung, Projektbegleitung, Qualitätskontrolle." } }
+      ]
+    }
+  }
+  </script>
+</body>
 
 </html>
