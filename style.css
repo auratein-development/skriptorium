@@ -376,7 +376,15 @@ body.is-locked { overflow: hidden; }
   inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center;
+  /* Anchored to the bottom, not centred. The nib's tip sits near the middle of
+     the artwork, so a centred crop put it at y=265 — right through the
+     headline. Anchoring low raises the tip to y=124, clear above the text,
+     without moving the text down (which would have pushed the CTA below the
+     fold: clearing the tip by padding alone needs ~400px and lands the CTA at
+     y=844 on a 632px viewport, because a taller hero crops less and the tip
+     tracks the text downward). Costs the top of the nib's barrel, which was
+     already cropped 100px. */
+  object-position: 50% 100%;
   opacity: .55;
   pointer-events: none;
 }
