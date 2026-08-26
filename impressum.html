@@ -17,6 +17,9 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap">
+  <!-- Reveal animations are gated on this class, so content stays visible
+       if JavaScript never runs. -->
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="style.css">
   <script src="main.js" defer></script>
 </head>
@@ -24,7 +27,7 @@
 <body>
   <a class="skip-link" href="#main">Direkt zum Inhalt</a>
 
-  <header class="site-header">
+  <header class="site-header is-floating">
     <div class="shell site-header__inner">
       <a class="brand" href="index.html" aria-label="Skriptorium GmbH — Startseite">
         <img src="images/logo.png" alt="Skriptorium GmbH" width="290" height="78">

@@ -203,16 +203,51 @@ a:hover { color: var(--navy); }
 .btn__icon { flex: none; }
 
 /* -------------------------------------------------------------- header --- */
+/* The header sits over the navy hero with no divider, then resolves into a
+   solid bar once the hero has scrolled past it.
+
+   The solid state is the CSS default so the header is legible with JavaScript
+   off; main.js toggles .is-floating, which index.html also carries inline so
+   there is no flash of the solid bar on load. */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background: var(--navy);
+  background-color: var(--navy);
   border-bottom: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 6px 20px -10px rgba(0, 0, 0, .5);
+  transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
 }
-.site-header.is-scrolled { box-shadow: 0 6px 20px -10px rgba(0, 0, 0, .5); }
+
+/* Scrim for the floating state. It is navy, so over the navy hero it is
+   invisible and the header reads as having no ground at all — while over any
+   lighter section it still gives the white nav text a floor. Constant across
+   the header band, fading only in the overhang below it. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -2.5rem 0;
+  background: linear-gradient(to bottom,
+              rgba(22, 67, 106, .90) 0,
+              rgba(22, 67, 106, .90) var(--header-h),
+              rgba(22, 67, 106, 0) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+
+.site-header.is-floating {
+  background-color: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+.site-header.is-floating::before { opacity: 1; }
 
 .site-header__inner {
+  position: relative;   /* sit above ::before */
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -341,7 +376,9 @@ body.is-locked { overflow: hidden; }
   overflow: hidden;
   background: var(--navy);
   color: #fff;
-  padding-block: clamp(3.5rem, 9vw, 7rem);
+  /* the fixed header overlays this section, so clear its height */
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 6vw, 5rem));
+  padding-bottom: clamp(3.5rem, 9vw, 7rem);
 }
 .hero__art {
   position: absolute;
@@ -601,7 +638,8 @@ body.is-locked { overflow: hidden; }
 .page-head {
   background: var(--navy);
   color: #fff;
-  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+  padding-top: calc(var(--header-h) + clamp(1.75rem, 4vw, 3rem));
+  padding-bottom: clamp(2.75rem, 6vw, 4.5rem);
 }
 .page-head h1 { font-size: var(--f-display); margin-top: .8rem; color: #fff; }
 .page-head .lede { margin-top: 1.2rem; color: rgba(255, 255, 255, .84); }
@@ -634,12 +672,15 @@ body.is-locked { overflow: hidden; }
 .legal dd { margin: 0; }
 
 /* ------------------------------------------------------------- reveal fx --- */
-.reveal {
+/* Scoped to .js, which an inline script in <head> sets. Without JavaScript the
+   content is simply visible — a scroll animation must never be the reason a
+   paragraph cannot be read. */
+.js .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity .5s ease, transform .5s ease;
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal.is-visible { opacity: 1; transform: none; }
 
 /* -------------------------------------------------------------- ≥ 40rem --- */
 @media (min-width: 40rem) {
@@ -672,7 +713,7 @@ body.is-locked { overflow: hidden; }
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
 }
 
 /* ------------------------------------------------------------------ print --- */

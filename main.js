@@ -47,14 +47,23 @@
   var wide = window.matchMedia('(min-width: 62rem)');
   wide.addEventListener('change', function (e) { if (e.matches) setDrawer(false); });
 
-  /* ------------------------------------------------------- header shadow --- */
+  /* --------------------------------------------- header: float, then solid --- */
+  /* Over the navy hero the header has no ground and no divider. Once the hero
+     has scrolled up past it, it fades into a solid bar. Driven by an observer
+     rather than a scroll listener so nothing runs on every frame. */
   var header = document.querySelector('.site-header');
+  var overlayRegion = document.querySelector('.hero, .page-head');
+
   if (header) {
-    var onScroll = function () {
-      header.classList.toggle('is-scrolled', window.scrollY > 8);
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    if (overlayRegion && 'IntersectionObserver' in window) {
+      var floater = new IntersectionObserver(function (entries) {
+        header.classList.toggle('is-floating', entries[0].isIntersecting);
+      }, { rootMargin: '-' + header.offsetHeight + 'px 0px 0px 0px', threshold: 0 });
+      floater.observe(overlayRegion);
+    } else {
+      // No dark region to float over, or no observer support: stay solid.
+      header.classList.remove('is-floating');
+    }
   }
 
   /* ------------------------------------------------------------- reveals --- */

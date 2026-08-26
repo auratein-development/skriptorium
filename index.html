@@ -29,6 +29,9 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap">
+  <!-- Reveal animations are gated on this class, so content stays visible
+       if JavaScript never runs. -->
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="style.css">
   <script src="main.js" defer></script>
 </head>
@@ -36,7 +39,7 @@
 <body>
   <a class="skip-link" href="#main">Direkt zum Inhalt</a>
 
-  <header class="site-header">
+  <header class="site-header is-floating">
     <div class="shell site-header__inner">
       <a class="brand" href="#top" aria-label="Skriptorium GmbH — Startseite">
         <img src="images/logo.png" alt="Skriptorium GmbH" width="290" height="78">
@@ -143,7 +146,7 @@
               <p>
                 Seit 2016 führe ich die Skriptorium GmbH in Stans. Als Historikerin, Autorin und
                 wissenschaftliche Archivarin verbinde ich den präzisen Umgang mit Sprache mit
-                fundierter Recherche — für Texte, die verstanden werden, für Geschichte, die
+                fundierter Recherche, für Texte, die verstanden werden, für Geschichte, die
                 Menschen erreicht, und für Archive, in denen sich wieder etwas finden lässt.
               </p>
               <p>
@@ -271,7 +274,7 @@
             <span class="label label--on-navy">Referenzen</span>
             <h2>Meine Arbeit im Detail</h2>
             <p class="lede">
-              Seit 2016 durfte ich zahlreiche Projekte erfolgreich umsetzen — für Vereine,
+              Seit 2016, durfte ich zahlreiche Projekte erfolgreich umsetzen für Vereine,
               Kirchgemeinden, Firmen, Museen und Familiennachlässe. Auf der Referenzseite
               finden Sie ausführliche Beschreibungen der drei Arbeitsfelder sowie die
               vollständigen Publikations- und Projektlisten.
@@ -291,7 +294,7 @@
           <span class="label">Kontakt</span>
           <h2>Sprechen wir über Ihr Projekt</h2>
           <p class="lede">
-            Erzählen Sie mir kurz, worum es geht — ich melde mich zurück und wir klären
+            Erzählen Sie mir kurz, worum es geht, ich melde mich zurück und wir klären
             gemeinsam, was sinnvoll und machbar ist.
           </p>
         </div>
