@@ -85,12 +85,16 @@
   }
 
   /* ------------------------------------------------- current section in nav --- */
-  var navLinks = document.querySelectorAll('.nav__link[href^="#"]');
+  /* A link is spied either because it points at a section (#kontakt) or because
+     data-section names one — that lets "Referenzen", which links to another
+     page, still light up while you are reading the Referenzen band. */
+  var navLinks = document.querySelectorAll('.nav__link[href^="#"], .nav__link[data-section]');
   if (navLinks.length && 'IntersectionObserver' in window) {
     var byId = {};
     var watched = [];
     Array.prototype.forEach.call(navLinks, function (link) {
-      var section = document.getElementById(link.getAttribute('href').slice(1));
+      var id = link.getAttribute('data-section') || link.getAttribute('href').slice(1);
+      var section = document.getElementById(id);
       if (section) { byId[section.id] = link; watched.push(section); }
     });
 
@@ -109,7 +113,10 @@
         }
       });
 
-      Array.prototype.forEach.call(navLinks, function (l) { l.removeAttribute('aria-current'); });
+      Array.prototype.forEach.call(navLinks, function (l) {
+        // aria-current="page" is set in the markup for the current page — leave it.
+        if (l.getAttribute('aria-current') !== 'page') l.removeAttribute('aria-current');
+      });
 
       if (active.length) {
         var topmost = active.reduce(function (a, b) {

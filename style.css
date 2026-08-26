@@ -206,9 +206,18 @@ a:hover { color: var(--navy); }
 /* The header sits over the navy hero with no divider, then resolves into a
    solid bar once the hero has scrolled past it.
 
-   The solid state is the CSS default so the header is legible with JavaScript
-   off; main.js toggles .is-floating, which index.html also carries inline so
-   there is no flash of the solid bar on load. */
+   One layer only. An earlier version cross-faded a scrim pseudo-element
+   against the background colour in opposite directions, which dipped to 0.725
+   effective alpha halfway through and read as a lighten-then-darken wobble.
+   A single background-color alpha (.82 -> 1) moves monotonically instead.
+
+   .82 navy over the navy hero is indistinguishable from navy, so the bar reads
+   as absent — while still giving white nav text a floor of 5.01:1 where the
+   artwork's teal strokes pass behind it.
+
+   Solid is the CSS default so the header stays legible with JavaScript off;
+   main.js toggles .is-floating, which the markup also carries inline so there
+   is no flash on load. */
 .site-header {
   position: fixed;
   top: 0;
@@ -218,36 +227,16 @@ a:hover { color: var(--navy); }
   background-color: var(--navy);
   border-bottom: 1px solid rgba(255, 255, 255, .12);
   box-shadow: 0 6px 20px -10px rgba(0, 0, 0, .5);
-  transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
-}
-
-/* Scrim for the floating state. It is navy, so over the navy hero it is
-   invisible and the header reads as having no ground at all — while over any
-   lighter section it still gives the white nav text a floor. Constant across
-   the header band, fading only in the overhang below it. */
-.site-header::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 -2.5rem 0;
-  background: linear-gradient(to bottom,
-              rgba(22, 67, 106, .90) 0,
-              rgba(22, 67, 106, .90) var(--header-h),
-              rgba(22, 67, 106, 0) 100%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .35s ease;
+  transition: background-color .18s linear, border-color .18s linear, box-shadow .18s linear;
 }
 
 .site-header.is-floating {
-  background-color: transparent;
+  background-color: rgba(22, 67, 106, .82);
   border-bottom-color: transparent;
   box-shadow: none;
 }
-.site-header.is-floating::before { opacity: 1; }
 
 .site-header__inner {
-  position: relative;   /* sit above ::before */
-  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -541,7 +530,23 @@ body.is-locked { overflow: hidden; }
 .service__more span { transition: transform .18s ease; }
 
 /* ------------------------------------------------------------ referenzen --- */
-.ref-teaser { max-width: var(--measure); }
+.ref-teaser {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+/* oldLogo.png is dark artwork on an opaque white ground — it has no
+   transparency to key out. Framing it as a plate makes the white deliberate
+   instead of reading as a stray box on the navy band. */
+.ref-teaser__mark {
+  margin: 0;
+  justify-self: start;
+  padding: .9rem 1.1rem;
+  background: var(--card);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.ref-teaser__mark img { width: 150px; }
 .ref-teaser h2 { font-size: var(--f-h2); margin-top: .7rem; }
 .ref-teaser__actions {
   display: flex;
@@ -691,6 +696,7 @@ body.is-locked { overflow: hidden; }
   .services { grid-template-columns: repeat(3, 1fr); }
   .about { grid-template-columns: 148px 1fr; column-gap: clamp(2rem, 4vw, 3.5rem); }
   .about__figure { grid-row: span 2; }
+  .ref-teaser { grid-template-columns: auto 1fr; }
 }
 
 /* -------------------------------------------------------------- ≥ 62rem --- */
