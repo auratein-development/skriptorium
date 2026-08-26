@@ -203,21 +203,16 @@ a:hover { color: var(--navy); }
 .btn__icon { flex: none; }
 
 /* -------------------------------------------------------------- header --- */
-/* The header sits over the navy hero with no divider, then resolves into a
-   solid bar once the hero has scrolled past it.
+/* The header is fully transparent over the navy hero and takes on a navy
+   ground once the hero has scrolled past it.
 
-   One layer only. An earlier version cross-faded a scrim pseudo-element
-   against the background colour in opposite directions, which dipped to 0.725
-   effective alpha halfway through and read as a lighten-then-darken wobble.
-   A single background-color alpha (.82 -> 1) moves monotonically instead.
+   The solid rule is the base so a JavaScript failure leaves a legible header;
+   the transparent state is gated on .js, which an inline script in <head> sets
+   before first paint, so there is no flash. main.js then adds .is-solid.
 
-   .82 navy over the navy hero is indistinguishable from navy, so the bar reads
-   as absent — while still giving white nav text a floor of 5.01:1 where the
-   artwork's teal strokes pass behind it.
-
-   Solid is the CSS default so the header stays legible with JavaScript off;
-   main.js toggles .is-floating, which the markup also carries inline so there
-   is no flash on load. */
+   The transparent state is rgba(22,67,106,0), not `transparent`: `transparent`
+   is rgba(0,0,0,0), so the colour would interpolate through black and the fade
+   would read as a dark smudge. Staying in the navy hue keeps it clean. */
 .site-header {
   position: fixed;
   top: 0;
@@ -230,10 +225,16 @@ a:hover { color: var(--navy); }
   transition: background-color .18s linear, border-color .18s linear, box-shadow .18s linear;
 }
 
-.site-header.is-floating {
-  background-color: rgba(22, 67, 106, .82);
+.js .site-header {
+  background-color: rgba(22, 67, 106, 0);
   border-bottom-color: transparent;
   box-shadow: none;
+}
+
+.js .site-header.is-solid {
+  background-color: var(--navy);
+  border-bottom-color: rgba(255, 255, 255, .12);
+  box-shadow: 0 6px 20px -10px rgba(0, 0, 0, .5);
 }
 
 .site-header__inner {
@@ -367,8 +368,8 @@ body.is-locked { overflow: hidden; }
   background: var(--navy);
   color: #fff;
   /* the fixed header overlays this section, so clear its height */
-  padding-top: calc(var(--header-h) + clamp(2.5rem, 6vw, 5rem));
-  padding-bottom: clamp(3.5rem, 9vw, 7rem);
+  padding-top: calc(var(--header-h) + clamp(2.75rem, 6vw, 5rem));
+  padding-bottom: clamp(2.75rem, 6vw, 5rem);
 }
 .hero__art {
   position: absolute;
@@ -381,9 +382,28 @@ body.is-locked { overflow: hidden; }
 }
 .hero__inner { position: relative; z-index: 1; }
 
+/* With a fully transparent header the artwork runs under the nav, and a teal
+   stroke of the pen nib crosses "Referenzen" — white text there measures
+   3.17:1. This fades the art toward the top edge, lifting the worst case to
+   4.78:1 at the nav baseline (checked across eight viewport shapes). It reads as a vignette, not a bar, and it is
+   static, so it never cross-fades against the header's own background.
+   Painted after .hero__art (later in the box tree) and below .hero__inner
+   (z-index 1). */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(22, 67, 106, .66), rgba(22, 67, 106, 0));
+  pointer-events: none;
+}
+
 .hero h1 {
   font-size: var(--f-display);
-  max-width: 24ch;
+  /* 24ch cut a 905px headline off at 865px and forced a second line */
+  max-width: 30ch;
   margin-top: .9rem;
   color: #fff;
 }
@@ -398,7 +418,7 @@ body.is-locked { overflow: hidden; }
 .claims {
   display: grid;
   gap: 1.75rem;
-  margin-top: clamp(2.5rem, 6vw, 4rem);
+  margin-top: clamp(2.25rem, 5vw, 3.5rem);
   padding-top: 0;
 }
 .claims__item { border-top: 2px solid var(--teal); padding-top: .9rem; }
@@ -414,7 +434,7 @@ body.is-locked { overflow: hidden; }
   display: flex;
   flex-wrap: wrap;
   gap: .85rem;
-  margin-top: clamp(2.25rem, 5vw, 3rem);
+  margin-top: clamp(2rem, 4vw, 2.75rem);
 }
 
 /* ------------------------------------------------------------ sections --- */

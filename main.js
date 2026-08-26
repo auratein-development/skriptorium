@@ -49,20 +49,20 @@
 
   /* --------------------------------------------- header: float, then solid --- */
   /* Over the navy hero the header has no ground and no divider. Once the hero
-     has scrolled up past it, it fades into a solid bar. Driven by an observer
+     has scrolled up past it, it settles into a solid bar. Driven by an observer
      rather than a scroll listener so nothing runs on every frame. */
   var header = document.querySelector('.site-header');
   var overlayRegion = document.querySelector('.hero, .page-head');
 
   if (header) {
     if (overlayRegion && 'IntersectionObserver' in window) {
-      var floater = new IntersectionObserver(function (entries) {
-        header.classList.toggle('is-floating', entries[0].isIntersecting);
+      var solidify = new IntersectionObserver(function (entries) {
+        header.classList.toggle('is-solid', !entries[0].isIntersecting);
       }, { rootMargin: '-' + header.offsetHeight + 'px 0px 0px 0px', threshold: 0 });
-      floater.observe(overlayRegion);
+      solidify.observe(overlayRegion);
     } else {
       // No dark region to float over, or no observer support: stay solid.
-      header.classList.remove('is-floating');
+      header.classList.add('is-solid');
     }
   }
 
