@@ -275,7 +275,8 @@ a:hover { color: var(--navy); }
   white-space: nowrap;
 }
 .nav__link:hover { color: #fff; border-bottom-color: var(--teal); }
-.nav__link[aria-current="true"] { color: #fff; border-bottom-color: var(--teal); }
+/* matches both the spy's aria-current="true" and the markup's aria-current="page" */
+.nav__link[aria-current] { color: #fff; border-bottom-color: var(--teal); }
 
 .header-cta { display: none; }
 
@@ -540,13 +541,8 @@ body.is-locked { overflow: hidden; }
 .service__more span { transition: transform .18s ease; }
 
 /* ------------------------------------------------------------ referenzen --- */
-.ref-teaser {
-  display: grid;
-  gap: clamp(1.75rem, 4vw, 3rem);
-  align-items: center;
-}
-.ref-teaser__mark img { width: 150px; opacity: .9; }
-.ref-teaser h2 { font-size: var(--f-h2); }
+.ref-teaser { max-width: var(--measure); }
+.ref-teaser h2 { font-size: var(--f-h2); margin-top: .7rem; }
 .ref-teaser__actions {
   display: flex;
   flex-wrap: wrap;
@@ -695,7 +691,6 @@ body.is-locked { overflow: hidden; }
   .services { grid-template-columns: repeat(3, 1fr); }
   .about { grid-template-columns: 148px 1fr; column-gap: clamp(2rem, 4vw, 3.5rem); }
   .about__figure { grid-row: span 2; }
-  .ref-teaser { grid-template-columns: 150px 1fr; }
 }
 
 /* -------------------------------------------------------------- ≥ 62rem --- */

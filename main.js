@@ -94,15 +94,30 @@
       if (section) { byId[section.id] = link; watched.push(section); }
     });
 
+    // Track what is actually in the band. Setting on entry without clearing on
+    // exit leaves the last match lit while you read a section that has no nav
+    // item of its own (Referenzen, Kontakt) — so nothing wins by default.
+    var active = [];
+
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        var link = byId[entry.target.id];
-        if (!link) return;
+        var at = active.indexOf(entry.target);
         if (entry.isIntersecting) {
-          Array.prototype.forEach.call(navLinks, function (l) { l.removeAttribute('aria-current'); });
-          link.setAttribute('aria-current', 'true');
+          if (at < 0) active.push(entry.target);
+        } else if (at >= 0) {
+          active.splice(at, 1);
         }
       });
+
+      Array.prototype.forEach.call(navLinks, function (l) { l.removeAttribute('aria-current'); });
+
+      if (active.length) {
+        var topmost = active.reduce(function (a, b) {
+          return a.getBoundingClientRect().top <= b.getBoundingClientRect().top ? a : b;
+        });
+        var link = byId[topmost.id];
+        if (link) link.setAttribute('aria-current', 'true');
+      }
     }, { rootMargin: '-45% 0px -50% 0px' });
 
     watched.forEach(function (s) { spy.observe(s); });
