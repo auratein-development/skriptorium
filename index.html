@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Skriptorium GmbH — Textarbeit, Geschichtsvermittlung und Archivierung in Stans</title>
+  <title>Skriptorium GmbH</title>
   <meta name="description" content="Skriptorium GmbH in Stans: journalistische und wissenschaftliche Texte, Redaktion und Lektorat, Geschichtsvermittlung, Archivberatung und Erschliessung. Karin Schleifer, Historikerin, Autorin und wissenschaftliche Archivarin.">
   <link rel="canonical" href="https://www.skriptorium.ch/">
 
@@ -29,6 +29,9 @@
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Open+Sans:wght@400;600&display=swap">
+  <!-- Reveal animations are gated on this class, so content stays visible
+       if JavaScript never runs. -->
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="style.css">
   <script src="main.js" defer></script>
 </head>
@@ -46,7 +49,7 @@
         <ul class="nav__list">
           <li><a class="nav__link" href="#ueber">Über mich</a></li>
           <li><a class="nav__link" href="#leistungen">Leistungen</a></li>
-          <li><a class="nav__link" href="reference.html">Referenzen</a></li>
+          <li><a class="nav__link" href="reference.html" data-section="referenzen">Referenzen</a></li>
         </ul>
       </nav>
 
@@ -78,24 +81,28 @@
     <!-- ============================================================ hero -->
     <section class="hero" id="top">
       <picture>
-        <source media="(max-width: 39.99rem)" type="image/webp"
-                srcset="images/build/hero-mobile-375.webp 375w, images/build/hero-mobile-750.webp 750w">
-        <source media="(max-width: 39.99rem)"
-                srcset="images/build/hero-mobile-375.jpg 375w, images/build/hero-mobile-750.jpg 750w">
         <source type="image/webp"
-                srcset="images/build/hero-1000.webp 1000w, images/build/hero-1600.webp 1600w">
-        <img class="hero__art" src="images/build/hero-1600.jpg"
-             srcset="images/build/hero-1000.jpg 1000w, images/build/hero-1600.jpg 1600w"
-             alt="" aria-hidden="true" fetchpriority="high" width="1440" height="1024">
+                srcset="images/build/texture-600.webp 600w, images/build/texture-1000.webp 1000w, images/build/texture-1600.webp 1600w"
+                sizes="100vw">
+        <img class="hero__texture" src="images/build/texture-1000.jpg"
+             srcset="images/build/texture-600.jpg 600w, images/build/texture-1000.jpg 1000w, images/build/texture-1600.jpg 1600w"
+             sizes="100vw"
+             alt="" aria-hidden="true" width="1440" height="1024">
+      </picture>
+
+      <picture>
+        <source type="image/webp"
+                srcset="images/build/nib-480.webp 480w, images/build/nib-960.webp 960w"
+                sizes="(min-width: 1409px) 620px, (max-width: 591px) 260px, 44vw">
+        <img class="hero__art" src="images/build/nib-480.png"
+             srcset="images/build/nib-480.png 480w, images/build/nib-960.png 960w"
+             sizes="(min-width: 1409px) 620px, (max-width: 591px) 260px, 44vw"
+             alt="" aria-hidden="true" fetchpriority="high" width="820" height="435">
       </picture>
 
       <div class="shell hero__inner">
         <span class="label label--on-navy">Skriptorium GmbH &middot; Stans</span>
         <h1>Frische Ideen für Ihre Geschichte</h1>
-        <p class="hero__sub">
-          Textarbeit, Geschichtsvermittlung und Archivierung aus einer Hand.
-          Karin Schleifer — Historikerin, Autorin und wissenschaftliche Archivarin.
-        </p>
 
         <ul class="claims">
           <li class="claims__item">
@@ -108,11 +115,6 @@
             <p>Ordnung statt Chaos im Archiv</p>
           </li>
         </ul>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#kontakt">Projekt anfragen</a>
-          <a class="btn btn--ghost-light" href="#leistungen">Leistungen ansehen</a>
-        </div>
       </div>
     </section>
 
@@ -143,7 +145,7 @@
               <p>
                 Seit 2016 führe ich die Skriptorium GmbH in Stans. Als Historikerin, Autorin und
                 wissenschaftliche Archivarin verbinde ich den präzisen Umgang mit Sprache mit
-                fundierter Recherche — für Texte, die verstanden werden, für Geschichte, die
+                fundierter Recherche, für Texte, die verstanden werden, für Geschichte, die
                 Menschen erreicht, und für Archive, in denen sich wieder etwas finden lässt.
               </p>
               <p>
@@ -264,14 +266,14 @@
     <section class="section section--navy" id="referenzen">
       <div class="shell">
         <div class="ref-teaser reveal">
-          <div class="ref-teaser__mark">
+          <figure class="ref-teaser__mark">
             <img src="images/oldLogo.png" alt="" width="232" height="144" loading="lazy">
-          </div>
+          </figure>
           <div>
             <span class="label label--on-navy">Referenzen</span>
             <h2>Meine Arbeit im Detail</h2>
             <p class="lede">
-              Seit 2016 durfte ich zahlreiche Projekte erfolgreich umsetzen — für Vereine,
+              Seit 2016, durfte ich zahlreiche Projekte erfolgreich umsetzen für Vereine,
               Kirchgemeinden, Firmen, Museen und Familiennachlässe. Auf der Referenzseite
               finden Sie ausführliche Beschreibungen der drei Arbeitsfelder sowie die
               vollständigen Publikations- und Projektlisten.
@@ -291,7 +293,7 @@
           <span class="label">Kontakt</span>
           <h2>Sprechen wir über Ihr Projekt</h2>
           <p class="lede">
-            Erzählen Sie mir kurz, worum es geht — ich melde mich zurück und wir klären
+            Erzählen Sie mir kurz, worum es geht, ich melde mich zurück und wir klären
             gemeinsam, was sinnvoll und machbar ist.
           </p>
         </div>

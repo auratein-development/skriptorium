@@ -47,14 +47,23 @@
   var wide = window.matchMedia('(min-width: 62rem)');
   wide.addEventListener('change', function (e) { if (e.matches) setDrawer(false); });
 
-  /* ------------------------------------------------------- header shadow --- */
+  /* --------------------------------------------- header: float, then solid --- */
+  /* Over the navy hero the header has no ground and no divider. Once the hero
+     has scrolled up past it, it settles into a solid bar. Driven by an observer
+     rather than a scroll listener so nothing runs on every frame. */
   var header = document.querySelector('.site-header');
+  var overlayRegion = document.querySelector('.hero, .page-head');
+
   if (header) {
-    var onScroll = function () {
-      header.classList.toggle('is-scrolled', window.scrollY > 8);
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    if (overlayRegion && 'IntersectionObserver' in window) {
+      var solidify = new IntersectionObserver(function (entries) {
+        header.classList.toggle('is-solid', !entries[0].isIntersecting);
+      }, { rootMargin: '-' + header.offsetHeight + 'px 0px 0px 0px', threshold: 0 });
+      solidify.observe(overlayRegion);
+    } else {
+      // No dark region to float over, or no observer support: stay solid.
+      header.classList.add('is-solid');
+    }
   }
 
   /* ------------------------------------------------------------- reveals --- */
@@ -76,24 +85,46 @@
   }
 
   /* ------------------------------------------------- current section in nav --- */
-  var navLinks = document.querySelectorAll('.nav__link[href^="#"]');
+  /* A link is spied either because it points at a section (#kontakt) or because
+     data-section names one — that lets "Referenzen", which links to another
+     page, still light up while you are reading the Referenzen band. */
+  var navLinks = document.querySelectorAll('.nav__link[href^="#"], .nav__link[data-section]');
   if (navLinks.length && 'IntersectionObserver' in window) {
     var byId = {};
     var watched = [];
     Array.prototype.forEach.call(navLinks, function (link) {
-      var section = document.getElementById(link.getAttribute('href').slice(1));
+      var id = link.getAttribute('data-section') || link.getAttribute('href').slice(1);
+      var section = document.getElementById(id);
       if (section) { byId[section.id] = link; watched.push(section); }
     });
 
+    // Track what is actually in the band. Setting on entry without clearing on
+    // exit leaves the last match lit while you read a section that has no nav
+    // item of its own (Referenzen, Kontakt) — so nothing wins by default.
+    var active = [];
+
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        var link = byId[entry.target.id];
-        if (!link) return;
+        var at = active.indexOf(entry.target);
         if (entry.isIntersecting) {
-          Array.prototype.forEach.call(navLinks, function (l) { l.removeAttribute('aria-current'); });
-          link.setAttribute('aria-current', 'true');
+          if (at < 0) active.push(entry.target);
+        } else if (at >= 0) {
+          active.splice(at, 1);
         }
       });
+
+      Array.prototype.forEach.call(navLinks, function (l) {
+        // aria-current="page" is set in the markup for the current page — leave it.
+        if (l.getAttribute('aria-current') !== 'page') l.removeAttribute('aria-current');
+      });
+
+      if (active.length) {
+        var topmost = active.reduce(function (a, b) {
+          return a.getBoundingClientRect().top <= b.getBoundingClientRect().top ? a : b;
+        });
+        var link = byId[topmost.id];
+        if (link) link.setAttribute('aria-current', 'true');
+      }
     }, { rootMargin: '-45% 0px -50% 0px' });
 
     watched.forEach(function (s) { spy.observe(s); });

@@ -24,6 +24,7 @@
   --olive-light: #A8B384;   /* tint  — olive as text on navy ground */
   --teal:        #44CCC0;
   --teal-light:  #66D8CE;   /* tint  — teal hover */
+  --teal-pale:   #BEEDE9;   /* tint  — teal on the hero texture (4.81:1) */
   --teal-deep:   #0A6E67;   /* shade — teal as text/link on light ground */
 
   /* neutrals, biased toward navy so they read as chosen, not default */
@@ -203,14 +204,39 @@ a:hover { color: var(--navy); }
 .btn__icon { flex: none; }
 
 /* -------------------------------------------------------------- header --- */
+/* The header is fully transparent over the navy hero and takes on a navy
+   ground once the hero has scrolled past it.
+
+   The solid rule is the base so a JavaScript failure leaves a legible header;
+   the transparent state is gated on .js, which an inline script in <head> sets
+   before first paint, so there is no flash. main.js then adds .is-solid.
+
+   The transparent state is rgba(22,67,106,0), not `transparent`: `transparent`
+   is rgba(0,0,0,0), so the colour would interpolate through black and the fade
+   would read as a dark smudge. Staying in the navy hue keeps it clean. */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background: var(--navy);
+  background-color: var(--navy);
   border-bottom: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 6px 20px -10px rgba(0, 0, 0, .5);
+  transition: background-color .18s linear, border-color .18s linear, box-shadow .18s linear;
 }
-.site-header.is-scrolled { box-shadow: 0 6px 20px -10px rgba(0, 0, 0, .5); }
+
+.js .site-header {
+  background-color: rgba(22, 67, 106, 0);
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.js .site-header.is-solid {
+  background-color: var(--navy);
+  border-bottom-color: rgba(255, 255, 255, .12);
+  box-shadow: 0 6px 20px -10px rgba(0, 0, 0, .5);
+}
 
 .site-header__inner {
   display: flex;
@@ -221,7 +247,7 @@ a:hover { color: var(--navy); }
 }
 
 .brand { display: flex; align-items: center; flex: none; }
-.brand img { width: 168px; height: auto; }
+.brand img { width: 200px; height: auto; }
 
 /* nav — inline on wide screens, drawer on narrow */
 .nav { display: none; }
@@ -240,7 +266,8 @@ a:hover { color: var(--navy); }
   white-space: nowrap;
 }
 .nav__link:hover { color: #fff; border-bottom-color: var(--teal); }
-.nav__link[aria-current="true"] { color: #fff; border-bottom-color: var(--teal); }
+/* matches both the spy's aria-current="true" and the markup's aria-current="page" */
+.nav__link[aria-current] { color: #fff; border-bottom-color: var(--teal); }
 
 .header-cta { display: none; }
 
@@ -341,37 +368,75 @@ body.is-locked { overflow: hidden; }
   overflow: hidden;
   background: var(--navy);
   color: #fff;
-  padding-block: clamp(3.5rem, 9vw, 7rem);
+  /* One viewport tall, so the hero is exactly what the first screen shows. */
+  min-height: 100vh;
+  min-height: 100svh;
+  /* The text block starts right under the pen tip. The tip sits 0.5049 x the
+     rendered artwork width below the hero's top edge, and the artwork is
+     clamp(260px, 44vw, 620px) wide — so the tip is clamp(131px, 22.2vw, 313px)
+     down, and that plus a hair is where the label begins.
+
+     min(…, 50vh) is the short-viewport escape hatch: on a wide-but-short screen
+     the tip-derived value would push the three claims below the fold, so the
+     text moves up and slightly into the tip instead of off-screen. max(…) keeps
+     it clear of the fixed header in every case. */
+  padding-top: max(
+    calc(var(--header-h) + 1rem),
+    min(calc(clamp(131px, 22.2vw, 313px) + .75rem), 50vh)
+  );
+  padding-bottom: clamp(2.75rem, 6vw, 5rem);
 }
-.hero__art {
+/* Ambient line-art texture: the original artwork with the pen nib erased, so it
+   carries no tip whose position has to be respected. Full-bleed, and faint —
+   .28 is the ceiling at which white text still clears 4.5:1 where a teal stroke
+   passes behind it. */
+.hero__texture {
   position: absolute;
   inset: 0;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: center;
+  opacity: .28;
+  pointer-events: none;
+}
+
+/* Placed motif, not a full-bleed wash. Sizing the artwork explicitly instead of
+   cover-filling the hero is what makes its geometry predictable: under
+   object-fit: cover the crop was a function of the hero's height, so the pen tip
+   moved whenever the text did, and it scaled with viewport width on top of that.
+
+   The tip sits 0.5049 x the rendered width below the artwork's top edge (it is
+   414px down an 820px-wide crop), so with the width clamped the tip can never
+   fall below 232px — and the hero's top padding keeps the text under it at every
+   viewport. */
+.hero__art {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: clamp(260px, 44vw, 620px);
+  height: auto;
   opacity: .55;
   pointer-events: none;
 }
+
 .hero__inner { position: relative; z-index: 1; }
+
+
+/* Brand teal on a teal texture stroke is 3.10:1 whatever the opacity, and the
+   texture's large circle sits right behind this label. The pale tint clears it. */
+.hero .label { color: var(--teal-pale); }
 
 .hero h1 {
   font-size: var(--f-display);
+  /* Deliberately narrow so the headline sets on two lines. */
   max-width: 24ch;
   margin-top: .9rem;
   color: #fff;
 }
-.hero__sub {
-  margin-top: 1.35rem;
-  max-width: 48ch;
-  font-size: var(--f-lede);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, .84);
-}
-
 .claims {
   display: grid;
   gap: 1.75rem;
-  margin-top: clamp(2.5rem, 6vw, 4rem);
+  margin-top: clamp(2.25rem, 5vw, 3.5rem);
   padding-top: 0;
 }
 .claims__item { border-top: 2px solid var(--teal); padding-top: .9rem; }
@@ -381,13 +446,6 @@ body.is-locked { overflow: hidden; }
   line-height: 1.4;
   color: #fff;
   max-width: 26ch;
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .85rem;
-  margin-top: clamp(2.25rem, 5vw, 3rem);
 }
 
 /* ------------------------------------------------------------ sections --- */
@@ -505,11 +563,22 @@ body.is-locked { overflow: hidden; }
 /* ------------------------------------------------------------ referenzen --- */
 .ref-teaser {
   display: grid;
-  gap: clamp(1.75rem, 4vw, 3rem);
-  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
 }
-.ref-teaser__mark img { width: 150px; opacity: .9; }
-.ref-teaser h2 { font-size: var(--f-h2); }
+/* oldLogo.png is dark artwork on an opaque white ground — it has no
+   transparency to key out. Framing it as a plate makes the white deliberate
+   instead of reading as a stray box on the navy band. */
+.ref-teaser__mark {
+  margin: 0;
+  justify-self: start;
+  padding: .9rem 1.1rem;
+  background: var(--card);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.ref-teaser__mark img { width: 150px; }
+.ref-teaser h2 { font-size: var(--f-h2); margin-top: .7rem; }
 .ref-teaser__actions {
   display: flex;
   flex-wrap: wrap;
@@ -601,7 +670,8 @@ body.is-locked { overflow: hidden; }
 .page-head {
   background: var(--navy);
   color: #fff;
-  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+  padding-top: calc(var(--header-h) + clamp(1.75rem, 4vw, 3rem));
+  padding-bottom: clamp(2.75rem, 6vw, 4.5rem);
 }
 .page-head h1 { font-size: var(--f-display); margin-top: .8rem; color: #fff; }
 .page-head .lede { margin-top: 1.2rem; color: rgba(255, 255, 255, .84); }
@@ -634,12 +704,22 @@ body.is-locked { overflow: hidden; }
 .legal dd { margin: 0; }
 
 /* ------------------------------------------------------------- reveal fx --- */
-.reveal {
+/* Scoped to .js, which an inline script in <head> sets. Without JavaScript the
+   content is simply visible — a scroll animation must never be the reason a
+   paragraph cannot be read. */
+.js .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity .5s ease, transform .5s ease;
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* -------------------------------------------------------- short viewport --- */
+/* Below this the pen tip is simply too far down to set the text under it and
+   still show the three claims, so the text wins and rides up over the tip. */
+@media (max-height: 620px) {
+  .hero { padding-top: max(calc(var(--header-h) + 1rem), 40vh); }
+}
 
 /* -------------------------------------------------------------- ≥ 40rem --- */
 @media (min-width: 40rem) {
@@ -654,7 +734,7 @@ body.is-locked { overflow: hidden; }
   .services { grid-template-columns: repeat(3, 1fr); }
   .about { grid-template-columns: 148px 1fr; column-gap: clamp(2rem, 4vw, 3.5rem); }
   .about__figure { grid-row: span 2; }
-  .ref-teaser { grid-template-columns: 150px 1fr; }
+  .ref-teaser { grid-template-columns: auto 1fr; }
 }
 
 /* -------------------------------------------------------------- ≥ 62rem --- */
@@ -672,7 +752,7 @@ body.is-locked { overflow: hidden; }
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
 }
 
 /* ------------------------------------------------------------------ print --- */

@@ -56,12 +56,34 @@ def main():
         im = Image.open(os.path.join(SRC, src)).convert("RGB")
         emit(crop_to(im, 3 / 2, anchor), base, (640, 1280), ratio=3 / 2)
 
-    # --- hero artwork ----------------------------------------------------
-    print("hero artwork:")
-    emit(Image.open(os.path.join(SRC, "background.jpg")).convert("RGB"),
-         "hero", (1000, 1600), q_webp=80, q_jpg=78)
-    emit(Image.open(os.path.join(SRC, "mobile-background.png")).convert("RGB"),
-         "hero-mobile", (375, 750), q_webp=82, q_jpg=80)
+    # --- hero motif: the pen nib, cropped out of the background artwork ---
+    # The hero places this at an explicit size rather than cover-filling, so the
+    # crop is fixed: x 620-1440, y 20-455 of background.jpg. The nib's own
+    # strokes end at y=437 and a neighbouring element starts at y=620, so 455
+    # takes the nib whole and leaves the stray out.
+    # The ground is exactly the hero navy, so a navy-backed file blends
+    # invisibly: at opacity .55 over the same navy it composites back to itself.
+    print("hero motif (pen nib):")
+    nib = Image.open(os.path.join(SRC, "background.jpg")).convert("RGB").crop((620, 20, 1440, 455))
+    nw, nh = nib.size
+    for w in (480, 960):
+        r = nib.resize((w, round(nh * w / nw)), Image.LANCZOS)
+        r.save(os.path.join(OUT, f"nib-{w}.webp"), "WEBP", quality=88, method=6)
+        r.save(os.path.join(OUT, f"nib-{w}.png"), "PNG", optimize=True)
+        print(f"  nib-{w}  {w}x{round(nh * w / nw)}")
+    # The pen tip sits 414px down an 820px-wide crop, so it lands
+    # 414/820 = 0.5049 x the rendered width below the artwork's top edge.
+    # style.css depends on that ratio to keep the hero text below the tip.
+
+    # --- ambient texture: the artwork with the nib erased ------------------
+    # The nib is placed separately at a controlled size, so this layer must not
+    # contain it. Faint on purpose: .28 in CSS is the ceiling at which white text
+    # still clears 4.5:1 over a teal stroke.
+    print("hero texture (artwork minus the nib):")
+    from PIL import ImageDraw
+    tex = Image.open(os.path.join(SRC, "background.jpg")).convert("RGB")
+    ImageDraw.Draw(tex).rectangle([612, 0, 1440, 468], fill=NAVY)
+    emit(tex, "texture", (600, 1000, 1600), q_webp=80, q_jpg=78)
 
     # --- portrait --------------------------------------------------------
     # The only source is 148x206, so it is converted at native size and never
