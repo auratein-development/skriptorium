@@ -24,6 +24,7 @@
   --olive-light: #A8B384;   /* tint  — olive as text on navy ground */
   --teal:        #44CCC0;
   --teal-light:  #66D8CE;   /* tint  — teal hover */
+  --teal-pale:   #BEEDE9;   /* tint  — teal on the hero texture (4.81:1) */
   --teal-deep:   #0A6E67;   /* shade — teal as text/link on light ground */
 
   /* neutrals, biased toward navy so they read as chosen, not default */
@@ -371,6 +372,20 @@ body.is-locked { overflow: hidden; }
   padding-top: calc(var(--header-h) + clamp(5rem, 13vw, 12rem));
   padding-bottom: clamp(2.75rem, 6vw, 5rem);
 }
+/* Ambient line-art texture: the original artwork with the pen nib erased, so it
+   carries no tip whose position has to be respected. Full-bleed, and faint —
+   .28 is the ceiling at which white text still clears 4.5:1 where a teal stroke
+   passes behind it. */
+.hero__texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .28;
+  pointer-events: none;
+}
+
 /* Placed motif, not a full-bleed wash. Sizing the artwork explicitly instead of
    cover-filling the hero is what makes its geometry predictable: under
    object-fit: cover the crop was a function of the hero's height, so the pen tip
@@ -392,6 +407,10 @@ body.is-locked { overflow: hidden; }
 
 .hero__inner { position: relative; z-index: 1; }
 
+
+/* Brand teal on a teal texture stroke is 3.10:1 whatever the opacity, and the
+   texture's large circle sits right behind this label. The pale tint clears it. */
+.hero .label { color: var(--teal-pale); }
 
 .hero h1 {
   font-size: var(--f-display);

@@ -75,6 +75,16 @@ def main():
     # 414/820 = 0.5049 x the rendered width below the artwork's top edge.
     # style.css depends on that ratio to keep the hero text below the tip.
 
+    # --- ambient texture: the artwork with the nib erased ------------------
+    # The nib is placed separately at a controlled size, so this layer must not
+    # contain it. Faint on purpose: .28 in CSS is the ceiling at which white text
+    # still clears 4.5:1 over a teal stroke.
+    print("hero texture (artwork minus the nib):")
+    from PIL import ImageDraw
+    tex = Image.open(os.path.join(SRC, "background.jpg")).convert("RGB")
+    ImageDraw.Draw(tex).rectangle([612, 0, 1440, 468], fill=NAVY)
+    emit(tex, "texture", (600, 1000, 1600), q_webp=80, q_jpg=78)
+
     # --- portrait --------------------------------------------------------
     # The only source is 148x206, so it is converted at native size and never
     # upscaled. A higher-resolution portrait would let the layout show it larger.
