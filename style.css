@@ -247,7 +247,7 @@ a:hover { color: var(--navy); }
 }
 
 .brand { display: flex; align-items: center; flex: none; }
-.brand img { width: 168px; height: auto; }
+.brand img { width: 200px; height: auto; }
 
 /* nav — inline on wide screens, drawer on narrow */
 .nav { display: none; }
@@ -368,8 +368,22 @@ body.is-locked { overflow: hidden; }
   overflow: hidden;
   background: var(--navy);
   color: #fff;
-  /* Clears the fixed header, then drops the text below the pen tip. */
-  padding-top: calc(var(--header-h) + clamp(7rem, 19vw, 17rem));
+  /* One viewport tall, so the hero is exactly what the first screen shows. */
+  min-height: 100vh;
+  min-height: 100svh;
+  /* The text block starts right under the pen tip. The tip sits 0.5049 x the
+     rendered artwork width below the hero's top edge, and the artwork is
+     clamp(260px, 44vw, 620px) wide — so the tip is clamp(131px, 22.2vw, 313px)
+     down, and that plus a hair is where the label begins.
+
+     min(…, 50vh) is the short-viewport escape hatch: on a wide-but-short screen
+     the tip-derived value would push the three claims below the fold, so the
+     text moves up and slightly into the tip instead of off-screen. max(…) keeps
+     it clear of the fixed header in every case. */
+  padding-top: max(
+    calc(var(--header-h) + 1rem),
+    min(calc(clamp(131px, 22.2vw, 313px) + .75rem), 50vh)
+  );
   padding-bottom: clamp(2.75rem, 6vw, 5rem);
 }
 /* Ambient line-art texture: the original artwork with the pen nib erased, so it
@@ -419,14 +433,6 @@ body.is-locked { overflow: hidden; }
   margin-top: .9rem;
   color: #fff;
 }
-.hero__sub {
-  margin-top: 1.35rem;
-  max-width: 48ch;
-  font-size: var(--f-lede);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, .84);
-}
-
 .claims {
   display: grid;
   gap: 1.75rem;
@@ -440,13 +446,6 @@ body.is-locked { overflow: hidden; }
   line-height: 1.4;
   color: #fff;
   max-width: 26ch;
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .85rem;
-  margin-top: clamp(2rem, 4vw, 2.75rem);
 }
 
 /* ------------------------------------------------------------ sections --- */
@@ -714,6 +713,13 @@ body.is-locked { overflow: hidden; }
   transition: opacity .5s ease, transform .5s ease;
 }
 .js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* -------------------------------------------------------- short viewport --- */
+/* Below this the pen tip is simply too far down to set the text under it and
+   still show the three claims, so the text wins and rides up over the tip. */
+@media (max-height: 620px) {
+  .hero { padding-top: max(calc(var(--header-h) + 1rem), 40vh); }
+}
 
 /* -------------------------------------------------------------- ≥ 40rem --- */
 @media (min-width: 40rem) {
